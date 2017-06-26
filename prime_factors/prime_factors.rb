@@ -1,27 +1,16 @@
-class PrimeFactors
-  def self.findFactors(num)
-    (2..num/2).each do |x|
+require 'prime'
+
+class PrimeFactor
+  def self.get_highest_prime_factor(num)
+    factors = []
+    (2..(num/2).to_i).each do |x|
       if num % x == 0
-        y = num / x
-        if y%2 == 0 
-          if y.to_i.is_prime?
-            puts y
-          end
+        if Prime.prime?((num/x).to_i)
+          return num/x.to_i
         end
       end
-    end 
-  end
- 
-  private
-
-  def is_prime?(y)
-    (2..y).each do |x|
-      if y % x == 0 
-        return true
-      end
     end
-    return false 
   end
 end
 
-PrimeFactors.findFactors(13195)
+puts PrimeFactor.get_highest_prime_factor(600851475143)
